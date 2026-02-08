@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Peechu 💙</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1a2a6c, #0a0f2c);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card {
+  margin-top: 90px;
+  background: rgba(255,255,255,0.08);
+  padding: 50px 35px;
+  border-radius: 22px;
+  display: inline-block;
+  max-width: 520px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+button {
+  margin-top: 25px;
+  padding: 14px 34px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#yesBtn {
+  background: #4da3ff;
+  color: white;
+}
+
+#noBtn {
+  background: transparent;
+  border: 1px solid #4da3ff;
+  color: #4da3ff;
+  margin-left: 10px;
+  position: relative;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  color: #6fa8ff;
+  font-size: 18px;
+  animation: floatUp 7s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(110vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="title">Peechu 💙</h1>
+  <p id="message">
+    I know I hurt you by forgetting something important… and I'm really sorry.<br><br>
+    You matter to me more than my memory mistakes, especially during a time when you need care and softness.<br><br>
+    I don't want to be perfect — I want to be better for you.
+  </p>
+
+  <button id="yesBtn" onclick="forgive()">Forgive 💙</button>
+  <button id="noBtn" onclick="resist()">Not Yet 😒</button>
+</div>
+
+<script>
+let responses = [
+  "Please Peechu… I hate knowing I hurt you 💔",
+  "You deserve patience, love, and comfort 💙",
+  "I promise to be more thoughtful next time 🥺",
+  "Even if you're mad… I still adore you 💫",
+  "I'll wait — because you matter to me 💞"
+];
+
+let count = 0;
+
+function forgive() {
+  document.getElementById("title").innerHTML = "Thank You, My Heart 💙";
+  document.getElementById("message").innerHTML =
+    "You have no idea how much you mean to me.<br><br>" +
+    "I promise to be gentler, more mindful, and more loving — especially when you need extra care.<br><br>" +
+    "Come here… let me take care of you the way you deserve 💫";
+
+  document.getElementById("yesBtn").style.display = "none";
+  document.getElementById("noBtn").style.display = "none";
+
+  launchHearts();
+}
+
+function resist() {
+  document.getElementById("message").innerHTML = responses[count % responses.length];
+  count++;
+
+  let noBtn = document.getElementById("noBtn");
+  let x = Math.random() * (window.innerWidth - 140);
+  let y = Math.random() * (window.innerHeight - 70);
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+/* Floating hearts */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💙";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 22 + 14 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}, 400);
+
+function launchHearts() {
+  for (let i = 0; i < 120; i++) {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💙";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "-10px";
+    heart.style.fontSize = Math.random() * 26 + 14 + "px";
+    heart.style.animation = "fall 3s linear";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
+
+let style = document.createElement("style");
+style.innerHTML = `
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
